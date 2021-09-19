@@ -1,0 +1,30 @@
+[
+    {
+        "ID": 1,
+        "name": "Tuan",
+        "age": 21,
+        "gender": "male",
+        "department": "History"
+    },
+    {
+        "ID": 2,
+        "name": "Phuong",
+        "age": 18,
+        "gender": "male",
+        "department": "History"
+    },
+    {
+        "ID": 3,
+        "name": "Trang",
+        "age": 18,
+        "gender": "female",
+        "department": "History"
+    },
+    {
+        "ID": 4,
+        "name": "Hang",
+        "age": 18,
+        "gender": "female",
+        "department": "History"
+    }
+]
