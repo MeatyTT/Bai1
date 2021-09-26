@@ -117,9 +117,9 @@ const updateStudent = async (studentId, updateData) => {
 const main = async () => {
     await createFile();
 
-    await addStudent(student2);
+    // await addStudent(student1);
     
-    await deleteStudent(student1);
+    // await deleteStudent(student1);
 
     await readFile();
 };
