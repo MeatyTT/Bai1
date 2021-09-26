@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-const port = 3000;
+const port = 1210;
 app.use(express.static('anh'));
 
 app.use('/',router);
