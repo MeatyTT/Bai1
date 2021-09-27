@@ -95,12 +95,8 @@ const updateUserById = async (userId, body) => {
         console.log("Id không tồn tại");
     }
 }
-const updateUser = async () => {
-    await fs.promises
-        .writeFile(path.resolve(__dirname, 'student.json'), JSON.stringify(content))
-        .catch((error) => {
-            if (error) throw error;
-        });
+const updateUser = async (body) => {
+    console.log(body);
 }
 module.exports = {
     getAllUser,

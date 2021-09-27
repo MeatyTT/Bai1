@@ -70,7 +70,7 @@ userRouter.put('/', async (req, res) => {
         const body = req.body;
         await updateUser(body);
         res.json({
-            msg: 'Thêm mới user thành công'
+            msg: 'Tạo mới danh sách user thành công'
         });
     } catch (err) {
         console.log('error put user');
