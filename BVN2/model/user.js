@@ -95,8 +95,13 @@ const updateUserById = async (userId, body) => {
         console.log("Id không tồn tại");
     }
 }
+
 const updateUser = async (body) => {
-    console.log(body);
+    try {
+        fs.writeFileSync(path.resolve(__dirname, 'student.json'), JSON.stringify(body));
+    } catch (error) {
+        console.log(error);
+    }
 }
 module.exports = {
     getAllUser,
