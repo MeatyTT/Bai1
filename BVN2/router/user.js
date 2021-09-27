@@ -1,5 +1,5 @@
 const express = require('express')
-const { getAllUser, queryUser, addUser, deleteUserById, updateUserById, updateUser} = require('../model/user')
+const { getAllUser, queryUser, addUser, deleteUserById, updateUserById, updateUser } = require('../model/user')
 
 let userRouter = express.Router();
 
@@ -31,13 +31,13 @@ userRouter.get('/', async (req, res) => {
     }
 });
 
-userRouter.post('/', async(req, res) => {
+userRouter.post('/', async (req, res) => {
     try {
         const body = req.body;
-        console.log('post',body);
-        await  addUser(body);
+        console.log('post', body);
+        await addUser(body);
         res.json({
-            msg:'Thêm mới user thành công'
+            msg: 'Thêm mới user thành công'
         });
     } catch (err) {
         console.log('error post user', err);
@@ -49,48 +49,49 @@ userRouter.post('/', async(req, res) => {
     // res.send('post method: ' + req.params.user)
 });
 
-userRouter.patch('/:userId', async(req, res) => {
+userRouter.patch('/:userId', async (req, res) => {
     try {
-        const userId=req.params.userId;
-        const result =await updateUserById(userId)
-        res.status(result.status).json({
-            msg:result.msg
+        const userId = req.params.userId;
+        const body = req.body;
+        await updateUserById(userId,body)
+        res.json({
+            msg: `Cập nhât user ${userId} thành công`
         })
-    } catch (error) {
+    } catch (err) {
         console.log('error patch user');
         res.status(500).json({
-            msg:err
+            msg: err
         })
     }
 });
 
-userRouter.put('/', async(req, res) => {
+userRouter.put('/', async (req, res) => {
     try {
         const body = req.body;
-        await  updateUser(body);
+        await updateUser(body);
         res.json({
-            msg:'Thêm mới user thành công'
+            msg: 'Thêm mới user thành công'
         });
-    } catch (error) {
+    } catch (err) {
         console.log('error put user');
         res.status(500).json({
-            msg:err
+            msg: err
         })
     }
 });
 
-userRouter.delete('/:userId', async(req, res) => {
+userRouter.delete('/:userId', async (req, res) => {
     try {
-        const userId=req.params.userId;
-        const result =await deleteUserById(userId)
+        const userId = req.params.userId;
+        const result = await deleteUserById(userId)
         res.status(result.status).json({
-            msg:result.msg
+            msg: result.msg
         })
-        
-    } catch (error) {
+
+    } catch (err) {
         console.log('error delete user');
         res.status(500).json({
-            msg:err
+            msg: err
         })
     }
 });

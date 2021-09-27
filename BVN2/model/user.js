@@ -57,32 +57,50 @@ const deleteUserById = async (userId) => {
                 msg: `Xóa bỏ user ${userId} thành công`
             }
         }
-    } catch (error) {
+        return 1;
+    } catch (err) {
         throw err
     }
 }
-const updateUserById = async (userId) => {
-    try {
-        const allUser = await getAllUser();
-        const newListUser = allUser.filter(user => {
-            return user.id != userId
-        })
-        if (newListUser.length === allUser.length) {
-            return {
-                status: 400,
-                msg: `Không tìm thấy user ${userId} `
-            }
-        } else {
-            await fs.promises.writeFile(path.resolve(__dirname, 'student.json'), JSON.stringify(newListUser));
-            addNewPromise();
-            return {
-                status: 200,
-                msg: `Cập nhập ${userId} thành công`
+const writeFile = async (content) => {
+    await fs.promises
+        .writeFile(path.resolve(__dirname, 'student.json'), JSON.stringify(content))
+        .catch((error) => {
+            if (error) throw error;
+        });
+};
+const check = async (userID) => {
+    const read = await fs.promises.readFile(path.resolve(__dirname, 'student.json'), "utf8");
+
+    let list = JSON.parse(read);
+    for (let i = 0; i < list.length; i++) {
+        if (list[i].id == userID) {
+            return true;
+        }
+    }
+};
+const updateUserById = async (userId, body) => {
+    const read = await fs.promises.readFile(path.resolve(__dirname, 'student.json'), "utf8");
+    console.log(userId);
+    if (await check(userId)) {
+        let list = JSON.parse(read);
+        for (let i = 0; i < list.length; i++) {
+            if (list[i].id == userId) {
+                list[i] = body;
             }
         }
-    } catch (error) {
-        throw err
+        writeFile(list)
     }
+    else {
+        console.log("Id không tồn tại");
+    }
+}
+const updateUser = async () => {
+    await fs.promises
+        .writeFile(path.resolve(__dirname, 'student.json'), JSON.stringify(content))
+        .catch((error) => {
+            if (error) throw error;
+        });
 }
 module.exports = {
     getAllUser,
@@ -90,5 +108,5 @@ module.exports = {
     addUser: addNewPromise,
     deleteUserById,
     updateUserById,
-    updateUser:addNewPromise,
+    updateUser,
 }

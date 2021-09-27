@@ -9,9 +9,9 @@ const student1 = {
 const student2 = {
     ID: 2,
     name: "Phuong",
-    age: 18,
+    age: 20,
     gender: "female",
-    department: "History",
+    department: "Math",
 };
 const writeFile = async (content) => {
     await fs.promises
@@ -97,7 +97,7 @@ const deleteStudent = async (studentId) => {
 
 const updateStudent = async (studentId, updateData) => {
     const read = await fs.promises.readFile("./student.json", "utf8");
-
+    console.log(typeof(studentId));
     if (await check(studentId)) {
         let list = JSON.parse(read);
 
@@ -115,13 +115,15 @@ const updateStudent = async (studentId, updateData) => {
 };
 
 const main = async () => {
-    await createFile();
+    // await createFile();
 
     // await addStudent(student1);
     
     // await deleteStudent(student1);
-
+    if(await check(2))
+        console.log(56);
     await readFile();
+    await updateStudent(2,student2);
 };
 
 main();
