@@ -80,20 +80,19 @@ const check = async (userID) => {
     }
 };
 const updateUserById = async (userId, body) => {
-    const read = await fs.promises.readFile(path.resolve(__dirname, 'student.json'), "utf8");
-    console.log(userId);
-    if (await check(userId)) {
-        let list = JSON.parse(read);
-        for (let i = 0; i < list.length; i++) {
-            if (list[i].id == userId) {
-                list[i] = body;
-            }
+    const data =  await fs.promises.readFile(path.resolve(__dirname,'student.json'),'utf8');
+    let list = JSON.parse(data);
+
+    for(var i = 0; i < list.length; i++) {
+        if(list[i].id == userId){
+            console.log("tim thay data");
+            list[i] = body;
+            console.log(body);
         }
-        writeFile(list)
+        // console.log(list);
     }
-    else {
-        console.log("Id không tồn tại");
-    }
+    console.log(1);
+    fs.writeFileSync(path.resolve(__dirname, 'student.json'), JSON.stringify(list));
 }
 
 const updateUser = async (body) => {

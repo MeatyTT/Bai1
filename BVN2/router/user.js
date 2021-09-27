@@ -55,7 +55,7 @@ userRouter.patch('/:userId', async (req, res) => {
         const body = req.body;
         await updateUserById(userId,body)
         res.json({
-            msg: `Cập nhât user ${userId} thành công`
+            msg:`cập nhật user ${userId} thành công`
         })
     } catch (err) {
         console.log('error patch user');
